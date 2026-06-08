@@ -71,7 +71,7 @@ document.addEventListener("keydown", (event) => {
 
 async function markPurchased(grocery) {
   try {
-    await fetch(API_URL, {
+    const response = await fetch(API_URL, {
       method: "POST",
       body: JSON.stringify({
         listId: grocery.listId,
@@ -79,16 +79,26 @@ async function markPurchased(grocery) {
       })
     });
 
-    groceries.splice(selectedIndex, 1);
+    const text = await response.text();
+    console.log("POST response:", text);
 
-    if (selectedIndex >= groceries.length) {
-      selectedIndex = groceries.length - 1;
+    const result = JSON.parse(text);
+
+    if (result.success) {
+      groceries.splice(selectedIndex, 1);
+
+      if (selectedIndex >= groceries.length) {
+        selectedIndex = groceries.length - 1;
+      }
+
+      render();
+    } else {
+      alert("Update failed: " + result.error);
     }
-
-    render();
 
   } catch (error) {
     console.error("Error updating item", error);
+    alert("Error updating item");
   }
 }
 
