@@ -75,7 +75,7 @@ async function markPurchased(grocery) {
       method: "POST",
       body: JSON.stringify({
         listId: grocery.listId,
-        status: "Purchased"
+        status: "Bought"
       })
     });
 
