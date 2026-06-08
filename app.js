@@ -66,7 +66,7 @@ document.addEventListener("keydown", (event) => {
 
   if (event.key === "Enter") {
     markPurchased(groceries[selectedIndex]);
-    }
+  }
 });
 
 async function markPurchased(grocery) {
