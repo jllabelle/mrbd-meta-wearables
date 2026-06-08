@@ -65,9 +65,31 @@ document.addEventListener("keydown", (event) => {
   }
 
   if (event.key === "Enter") {
-    groceries[selectedIndex].done = !groceries[selectedIndex].done;
-    render();
-  }
+    markPurchased(groceries[selectedIndex]);
+    }
 });
+
+async function markPurchased(grocery) {
+  try {
+    await fetch(API_URL, {
+      method: "POST",
+      body: JSON.stringify({
+        listId: grocery.listId,
+        status: "Purchased"
+      })
+    });
+
+    groceries.splice(selectedIndex, 1);
+
+    if (selectedIndex >= groceries.length) {
+      selectedIndex = groceries.length - 1;
+    }
+
+    render();
+
+  } catch (error) {
+    console.error("Error updating item", error);
+  }
+}
 
 loadGroceries();
