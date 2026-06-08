@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  background: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  width: 600px;
+  height: 600px;
+  overflow: hidden;
+}
+
+#app {
+  padding: 24px;
+}
+
+h1 {
+  font-size: 32px;
+  margin: 0 0 16px;
+}
+
+.store {
+  font-size: 26px;
+  margin-top: 20px;
+}
+
+.aisle {
+  font-size: 20px;
+  margin-top: 12px;
+  color: #ccc;
+}
+
+.item {
+  font-size: 24px;
+  padding: 10px;
+  margin: 6px 0;
+  border: 2px solid transparent;
+}
+
+.item.selected {
+  border-color: #fff;
+}
+
+.item.done {
+  text-decoration: line-through;
+  color: #777;
+}
